@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_seat_id');
-            $table->foreign('table_seat_id')->references('table_seats')->on()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('table_seat_id')->references('id')->on('table_seats')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

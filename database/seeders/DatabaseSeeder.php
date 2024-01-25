@@ -19,10 +19,14 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(10)->create();
 
-        Employee::factory()->create([
+        $employee = Employee::factory()->create([
             'name'      => 'admin',
             'email'     => 'admin@admin.com',
             'password'  => Hash::make('admin'),
+            'phone'     => '0121113215',
+            'address'   => 'address',
+            'status'    => 'active',
         ]);
+        $employee->addRole('manager');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,5 +33,9 @@ class Employee extends Authenticatable implements LaratrustUser
         'password' => 'hashed',
     ];
 
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 
 }

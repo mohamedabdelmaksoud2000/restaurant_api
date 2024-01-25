@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
+            $table->integer('location');
             $table->integer('capacity');
             $table->enum('status',['free','reserved','occupied','other']);
             $table->unsignedBigInteger('branch_id');

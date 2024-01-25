@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::create('reservgations',function ( Blueprint $table ){
+        Schema::create('reservations',function ( Blueprint $table ){
             $table->id();
-            $table->timestamp('reservation_time');
+            $table->timestamp('reservation_time')->nullable();
             $table->integer('people_count');
             $table->enum('status',['requested','pending','confirmed','checkedin','canceled','abandoned']);
             $table->text('note')->nullable();
-            $table->timestamp('checkin_time');
+            $table->timestamp('checkin_time')->nullable();
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

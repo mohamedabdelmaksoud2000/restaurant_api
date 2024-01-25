@@ -12,20 +12,21 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'superadministrator' => [
-            'users' => 'c,r,u,d',
-            'payments' => 'c,r,u,d',
+        'manager' => [
+            'employee' => 'c,r,u,d',
             'profile' => 'r,u',
         ],
-        'administrator' => [
-            'users' => 'c,r,u,d',
+        'receptionist' => [
             'profile' => 'r,u',
         ],
-        'user' => [
+        'waiter' => [
             'profile' => 'r,u',
         ],
-        'role_name' => [
-            'module_1_name' => 'c,r,u,d',
+        'chef' => [
+            'profile' => 'r,u',
+        ],
+        'chashir' => [
+            'profile' => 'r,u',
         ],
     ],
 

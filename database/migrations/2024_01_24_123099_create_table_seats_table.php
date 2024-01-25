@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('number');
             $table->enum('status',['regular','kid','accessible','other']);
+            $table->unsignedBigInteger('table_id');
+            $table->foreign('table_id')->references('id')->on('tables')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

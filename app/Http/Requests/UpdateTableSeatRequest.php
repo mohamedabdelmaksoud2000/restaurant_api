@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueTableSeat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTableSeatRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateTableSeatRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,9 @@ class UpdateTableSeatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'table_id'  => ['required','exists:tables,id'],
+            'number'    => ['required','numeric',new UniqueTableSeat($this->id)],
+            'status'    => ['required','in:regular,kid,accessible,other']
         ];
     }
 }

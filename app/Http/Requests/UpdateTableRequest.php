@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueTable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTableRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateTableRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,10 @@ class UpdateTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'capacity'  => ['nullable','numeric'],
+            'status'    => ['nullable','in:free,reserved,occupied,other'],
+            'branch_id' => ['nullable','exists:branches,id'],
+            'location'  => ['nullable',new UniqueTable($this->branch_id)],
         ];
     }
 }

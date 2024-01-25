@@ -11,7 +11,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'      => ['nullable'],
+            'email'     => ['nullable','email'],
+            'password'  => ['nullable'],
+            'phone'     => ['nullable','numeric'],
+            'address'   => ['nullable'],
+            'branch_id' => ['nullable','exists:branches,id'],
+            'status'    => ['nullable','in:active,closed,canceled,blacklisted'],
+            'role'      => ['nullable','exists:roles,name'],
         ];
     }
 }
