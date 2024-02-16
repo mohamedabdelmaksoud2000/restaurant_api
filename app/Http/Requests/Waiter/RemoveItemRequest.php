@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Waiter;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMealRequest extends FormRequest
+class RemoveItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

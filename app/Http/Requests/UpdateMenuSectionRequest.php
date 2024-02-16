@@ -11,7 +11,7 @@ class UpdateMenuSectionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateMenuSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'         => ['nullable'],
+            'description'   => ['nullable','string'],
+            'menu_id'       => ['nullable','exists:menus,id']
         ];
     }
 }

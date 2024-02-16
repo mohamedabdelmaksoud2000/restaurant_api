@@ -11,7 +11,7 @@ class UpdateMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'         => ['nullable'],
+            'description'   => ['nullable','string'],
+            'branch_id'     => ['nullable','unique:menus,branch_id,'.$this->id]
         ];
     }
 }

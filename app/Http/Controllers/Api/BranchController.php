@@ -38,6 +38,10 @@ class BranchController extends Controller
     public function show(string $id)
     {
         $branch = Branch::find($id);
+        if(!$branch)
+        {
+            return $this->responseError('not found branch this is id',404);
+        }
         return $this->responseSuccess('show one branch',new BranchResource($branch));
     }
 

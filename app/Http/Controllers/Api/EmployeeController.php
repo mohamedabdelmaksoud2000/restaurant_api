@@ -9,19 +9,13 @@ use App\Http\Resources\EmployeeCollection;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 use App\Traits\ResponseApi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Throwable;
 
 class EmployeeController extends Controller
 {
 
     use ResponseApi;
 
-    // public function __construct()
-    // {
-    //     // $this->middleware('role:manager');
-    // }
 
     public function index()
     {

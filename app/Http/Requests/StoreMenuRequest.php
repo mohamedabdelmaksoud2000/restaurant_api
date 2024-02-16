@@ -11,7 +11,7 @@ class StoreMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'         => ['required'],
+            'description'   => ['nullable','string'],
+            'branch_id'     => ['required','unique:menus,branch_id']
         ];
     }
 }

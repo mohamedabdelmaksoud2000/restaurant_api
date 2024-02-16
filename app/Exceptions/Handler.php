@@ -38,11 +38,13 @@ class Handler extends ExceptionHandler
                 return response()->json(['message' => 'unAuthenticated'], 401);
             }
         });
+
         $this->renderable(function (ValidationException $e, $request) {
             if ($request->wantsJson() || $request->is('api/*')) {
                 return response()->json(['message' => 'UnprocessableEntity', 'errors' => []], 422);
             }
         });
+        
         $this->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->wantsJson() || $request->is('api/*')) {
                 return response()->json(['message' => 'The requested link does not exist'], 400);

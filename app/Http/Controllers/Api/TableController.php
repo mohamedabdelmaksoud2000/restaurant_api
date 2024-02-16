@@ -9,6 +9,9 @@ use App\Http\Resources\TableCollection;
 use App\Http\Resources\TableResource;
 use App\Models\Table;
 use App\Traits\ResponseApi;
+use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TableController extends Controller
 {

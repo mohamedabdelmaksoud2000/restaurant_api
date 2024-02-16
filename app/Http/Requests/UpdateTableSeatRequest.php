@@ -23,9 +23,9 @@ class UpdateTableSeatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table_id'  => ['required','exists:tables,id'],
-            'number'    => ['required','numeric',new UniqueTableSeat($this->id)],
-            'status'    => ['required','in:regular,kid,accessible,other']
+            'table_id'  => ['nullable','exists:tables,id'],
+            'number'    => ['nullable','numeric',new UniqueTableSeat($this->id)],
+            'status'    => ['nullable','in:regular,kid,accessible,other']
         ];
     }
 }
