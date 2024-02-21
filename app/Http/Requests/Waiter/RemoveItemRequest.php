@@ -11,7 +11,7 @@ class RemoveItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class RemoveItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => ['required','exists:meal_items,id']
         ];
     }
 }

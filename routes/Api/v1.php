@@ -61,12 +61,13 @@ Route::middleware('auth:sanctum')
         Route::get('receptionist/reserve',[ReceptionistController::class ,'showReservations']);
         Route::post('receptionist/reserve',[ReceptionistController::class ,'reserveTable']);
     });
-    // Receptionist
+    // Receptionist receivedOrder
     Route::middleware('role:manager|waiter')
     ->controller(WaiterController::class)
     ->group(function(){
         Route::get('waiter/orders','showOrders');
         Route::post('waiter/order','createOrder');
+        Route::post('waiter/order/{id}','receivedOrder');
         Route::post('waiter/meal','addMeal');
         Route::delete('waiter/meal','removeMeal');
         Route::post('waiter/item','addItem');

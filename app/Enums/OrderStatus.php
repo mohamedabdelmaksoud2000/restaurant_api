@@ -15,4 +15,5 @@ final class OrderStatus extends Enum
     const Preparing = 'preparing';
     const Complete = 'complete';
     const Canceled = 'canceled';
+    const None = 'none';
 }

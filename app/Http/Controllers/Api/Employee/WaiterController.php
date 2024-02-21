@@ -15,6 +15,7 @@ use App\Http\Resources\Waiter\OrderResource;
 use App\Models\Meal;
 use App\Models\MealItem;
 use App\Models\Order;
+use App\Notifications\ReceivedOrder;
 use App\Traits\ResponseApi;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -32,8 +33,8 @@ class WaiterController extends Controller
 
     public function showOrders()
     {
-        $orders = Order::withWhereHas('table',fn($query)=>
-        $query->where('branch_id',Auth::user()->branch->id)
+        $orders = Order::withWhereHas('table',
+            fn ( $query ) => $query->where('branch_id',Auth::user()->branch->id)
         );
         $orders = QueryBuilder::for($orders)
         ->allowedFilters([
@@ -72,7 +73,17 @@ class WaiterController extends Controller
 
     public function removeItem(RemoveItemRequest $request)
     {
-
+        $item = MealItem::find($request->id);
+        $item->delete();
+        return $this->responseSuccess('Meal\'s item has been Removed Successfully!',[]);
     }
 
+    public function receivedOrder(string $id)
+    {
+        $order = Order::find($id);
+        $order->update(['status'=>OrderStatus::Received]);
+        $kitchen = Auth::user()->branch->kitchen;
+        $kitchen->notify(new ReceivedOrder($order));
+        return $this->responseSuccess('order has been received successfully!',new OrderResource($order));
+    }
 }
